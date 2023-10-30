@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: database
+  name: database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: database
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: database
+    spec:
+      containers:
+        - env:
+            - name: NEO4J_AUTH
+              value: neo4j/password
+            - name: NEO4J_PLUGINS
+              value: '["apoc"]'
+            - name: NEO4J_db_tx__log_rotation_retention__policy
+              value: "false"
+          image: neo4j:5.11
+          livenessProbe:
+            exec:
+              command:
+                - wget --no-verbose --tries=1 --spider localhost:7474 || exit 1
+            failureThreshold: 5
+            periodSeconds: 5
+            timeoutSeconds: 3
+          name: database
+          ports:
+            - containerPort: 7687
+              hostPort: 7687
+              protocol: TCP
+            - containerPort: 7474
+              hostPort: 7474
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /data
+              name: neo4j-data
+      restartPolicy: Always
+      volumes:
+        - name: neo4j-data
+          persistentVolumeClaim:
+            claimName: neo4j-data

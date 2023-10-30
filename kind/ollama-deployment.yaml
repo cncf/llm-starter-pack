@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ollama
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ollama
+  template:
+    metadata:
+      labels:
+        app: ollama
+    spec:
+      containers:
+        - name: ollama
+          image: ollama/ollama:latest
+          volumeMounts:
+            - mountPath: /root/.ollama
+              name: ollama-data
+          ports:
+            - containerPort: 11434
+      initContainers:
+        - name: ollama-init
+          image: ollama/ollama:latest
+          command: ["sh", "-c", "ollama serve & ollama pull mistral"]
+          volumeMounts:
+            - mountPath: /root/.ollama
+              name: ollama-data
+      volumes:
+        - name: ollama-data
+          emptyDir:
+            sizeLimit: 8Gi

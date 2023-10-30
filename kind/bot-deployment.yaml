@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: bot
+  name: bot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bot
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: bot
+    spec:
+      containers:
+        - env:
+            - name: AWS_ACCESS_KEY_ID
+            - name: AWS_DEFAULT_REGION
+            - name: AWS_SECRET_ACCESS_KEY
+            - name: EMBEDDING_MODEL
+              value: sentence_transformer
+            - name: LANGCHAIN_API_KEY
+            - name: LANGCHAIN_ENDPOINT
+              value: '"https://api.smith.langchain.com"'
+            - name: LANGCHAIN_PROJECT
+            - name: LANGCHAIN_TRACING_V2
+              value: "false"
+            - name: LLM
+              value: mistral
+            - name: NEO4J_PASSWORD
+              value: password
+            - name: NEO4J_URI
+              value: neo4j://database:7687
+            - name: NEO4J_USERNAME
+              value: neo4j
+            - name: OLLAMA_BASE_URL
+              value: http://ollama:11434
+            - name: OPENAI_API_KEY
+          image: onlydole/bot:latest
+          name: bot
+          ports:
+            - containerPort: 8501
+              hostPort: 8501
+              protocol: TCP
+      restartPolicy: Always
