@@ -1,4 +1,3 @@
-openai
 python-dotenv
 wikipedia
 tiktoken
