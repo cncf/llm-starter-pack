@@ -18,12 +18,8 @@ spec:
     spec:
       containers:
         - env:
-            - name: AWS_ACCESS_KEY_ID
-            - name: AWS_DEFAULT_REGION
-            - name: AWS_SECRET_ACCESS_KEY
             - name: EMBEDDING_MODEL
               value: sentence_transformer
-            - name: LANGCHAIN_API_KEY
             - name: LANGCHAIN_ENDPOINT
               value: '"https://api.smith.langchain.com"'
             - name: LANGCHAIN_PROJECT
@@ -39,7 +35,6 @@ spec:
               value: neo4j
             - name: OLLAMA_BASE_URL
               value: http://ollama:11434
-            - name: OPENAI_API_KEY
           image: pritianka/bot:latest
           name: bot
           ports:
