@@ -78,7 +78,7 @@ st.markdown(styl, unsafe_allow_html=True)
 
 
 def chat_input():
-    user_input = st.chat_input("What coding issue can I help you resolve today?")
+    user_input = st.chat_input("What does the KubeCon + CloudNativeCon audience want to know today?")
 
     if user_input:
         with st.chat_message("user"):
