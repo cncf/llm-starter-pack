@@ -40,7 +40,7 @@ spec:
             - name: OLLAMA_BASE_URL
               value: http://ollama:11434
             - name: OPENAI_API_KEY
-          image: onlydole/bot:latest
+          image: pritianka/bot:latest
           name: bot
           ports:
             - containerPort: 8501
