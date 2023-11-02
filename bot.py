@@ -177,5 +177,5 @@ if st.session_state.open_sidebar:
         )
 
 
-chat_input()
 display_chat()
+chat_input()
