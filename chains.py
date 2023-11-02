@@ -1,10 +1,8 @@
-from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.embeddings import (
     OllamaEmbeddings,
     SentenceTransformerEmbeddings,
-    BedrockEmbeddings,
 )
-from langchain.chat_models import ChatOpenAI, ChatOllama, BedrockChat
+from langchain.chat_models import ChatOllama
 from langchain.vectorstores.neo4j_vector import Neo4jVector
 from langchain.chains import RetrievalQAWithSourcesChain
 from langchain.chains.qa_with_sources import load_qa_with_sources_chain
@@ -24,14 +22,6 @@ def load_embedding_model(embedding_model_name: str, logger=BaseLogger(), config=
         )
         dimension = 4096
         logger.info("Embedding: Using Ollama")
-    elif embedding_model_name == "openai":
-        embeddings = OpenAIEmbeddings()
-        dimension = 1536
-        logger.info("Embedding: Using OpenAI")
-    elif embedding_model_name == "aws":
-        embeddings = BedrockEmbeddings()
-        dimension = 1536
-        logger.info("Embedding: Using AWS")
     else:
         embeddings = SentenceTransformerEmbeddings(
             model_name="all-MiniLM-L6-v2", cache_folder="/embedding_model"
@@ -42,20 +32,7 @@ def load_embedding_model(embedding_model_name: str, logger=BaseLogger(), config=
 
 
 def load_llm(llm_name: str, logger=BaseLogger(), config={}):
-    if llm_name == "gpt-4":
-        logger.info("LLM: Using GPT-4")
-        return ChatOpenAI(temperature=0, model_name="gpt-4", streaming=True)
-    elif llm_name == "gpt-3.5":
-        logger.info("LLM: Using GPT-3.5")
-        return ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo", streaming=True)
-    elif llm_name == "claudev2":
-        logger.info("LLM: ClaudeV2")
-        return BedrockChat(
-            model_id="anthropic.claude-v2",
-            model_kwargs={"temperature": 0.0, "max_tokens_to_sample": 1024},
-            streaming=True,
-        )
-    elif len(llm_name):
+    if len(llm_name):
         logger.info(f"LLM: Using Ollama: {llm_name}")
         return ChatOllama(
             temperature=0,
@@ -67,8 +44,6 @@ def load_llm(llm_name: str, logger=BaseLogger(), config={}):
             top_p=0.3,  # Higher value (0.95) will lead to more diverse text, while a lower value (0.5) will generate more focused text.
             num_ctx=3072,  # Sets the size of the context window used to generate the next token.
         )
-    logger.info("LLM: Using GPT-3.5")
-    return ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo", streaming=True)
 
 
 def configure_llm_only_chain(llm):
