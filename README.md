@@ -43,3 +43,9 @@ This demo has been tested on the following operating systems and will work if yo
 - macOS
 - Linux
 - Windows
+
+## Acknowledgements
+
+We'd like to thank Docker for sharing their GenAI Stack demo with us. We've used their demo as a starting point for this demo. You can find their demo [here](https://www.docker.com/blog/introducing-a-new-genai-stack/).
+
+We'd also like to thank Weaveworks for their Weaveworks Scope project which we've used to help visualize our Kubernetes cluster. You can find their project [here](https://www.weave.works/oss/scope/).
