@@ -26,7 +26,11 @@ This script will:
 
 ## Shutdown
 
-To shutdown the demo, simply run the following command:
+To shutdown the demo, simply run the following command, which will:
+
+- Remove the Kubernetes manifests
+- Remove the port-forwarding
+- Delete the kind cluster
 
 ```sh
 ./shutdown.sh
