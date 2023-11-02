@@ -58,7 +58,7 @@ styl = f"""
 <style>
     /* not great support for :has yet (hello FireFox), but using it for now */
     .main {{
-        background-image: url('https://images.unsplash.com/photo-1533812451773-f2b04c2bdeb2?auto=format&fit=crop&q=80&w=2370&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); 
+        background-image: url('https://vior-lys.s3.amazonaws.com/img/kccnna23.png'); 
         background-repeat: repeat;
         background-size: cover;
         background-attachment: fixed;
@@ -69,7 +69,7 @@ styl = f"""
       z-index: 101;
     }}
     .stChatFloatingInputContainer {{
-        bottom: 20px;
+        bottom: 20px; 
         background: transparent;
     }}
 
@@ -177,5 +177,5 @@ if st.session_state.open_sidebar:
         )
 
 
-display_chat()
 chat_input()
+display_chat()
