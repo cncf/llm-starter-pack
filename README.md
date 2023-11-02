@@ -2,45 +2,40 @@
 
 ## Prerequisites
 
-- [Homebrew](https://brew.sh) (MacOS only)
 - [Docker](https://docs.docker.com/install/)
 - [kind](https://kind.sigs.k8s.io/)
   - kind is "Kubernetes in Docker," used by the Kubernetes project to help test features and run integration tests. Turns out, it's a handy way anyone can use to spin up a cluster quickly. Big thank you to @bentheelder for developing it 👏🏼 👏🏼
 - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
   - kubectl is how you interact with k8s using the command line. This allows you to become a k8s whisperer :-)
 
-## Setup
+## Startup
 
-First, let's create our kind cluster, configured exactly as we want it
+We have crafted a script to make this demo run as quickly as possible on your machine, once you've installed the prerequisites.
 
-```sh
-kind create cluster --config cluster.yaml
-```
+This script will:
 
-Apply the Kubernetes manifests we need for our LLM chatbot demo
+- Create a kind cluster
+- Apply the Kubernetes manifests we need for our LLM chatbot demo
+- Use port-forwarding to help us access our service in the browser so we can ask our LLM questions
 
-```sh
-kubectl apply -f kind/
-```
-
-> **Note:** After applying the Kubernetes manifests, our cluster will take roughly 5-10 minutes to download the images, initialize the LLM and start the applications. You can monitor the status of the pods by running `kubectl get pods -w`
-
-We'll use port-forwarding which helps us access our service in the browser so we can ask our LLM questions
-  
-```sh
-kubectl port-forward svc/bot 8501:8501
-```
-
-Let's open up our browser and query our LLM
+> **Note:** After applying the Kubernetes manifests, our cluster will take roughly 3-4 minutes to download the images, initialize the LLM and start the applications. You can monitor the status of the pods by running `kubectl get pods`
 
 ```sh
-open http://localhost:8501
+./startup.sh
 ```
 
-## Cleanup
+## Shutdown
 
-This will delete our cluster and keep our machine tidy
+To shutdown the demo, simply run the following command:
 
 ```sh
-kind delete cluster --name llm
+./shutdown.sh
 ```
+
+## Operating System Information
+
+This demo has been tested on the following operating systems and will work if you have the prerequisites installed.
+
+- macOS
+- Linux
+- Windows
