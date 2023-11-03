@@ -10,7 +10,7 @@
 
 ## Startup
 
-We have crafted a script to make this demo run as quickly as possible on your machine, once you've installed the prerequisites.
+We have crafted a few scripts to make this demo run as quickly as possible on your machine once you've installed the prerequisites.
 
 This script will:
 
@@ -22,6 +22,20 @@ This script will:
 
 ```sh
 ./startup.sh
+```
+
+## Demo
+
+Next, we can install the demo app that makes use of the LLM.
+
+```sh
+./demo.sh
+```
+
+If you want to remove or tear down just hte demo app, you can run 
+
+```sh
+./teardown.sh
 ```
 
 ## Shutdown
