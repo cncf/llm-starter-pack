@@ -4,7 +4,7 @@
 
 - [Docker](https://docs.docker.com/install/)
 - [kind](https://kind.sigs.k8s.io/)
-  - kind is "Kubernetes in Docker," used by the Kubernetes project to help test features and run integration tests. Turns out, it's a handy way anyone can use to spin up a cluster quickly. Big thank you to @bentheelder for developing it 👏🏼 👏🏼
+  - kind is "Kubernetes in Docker," used by the Kubernetes project to help test features and run integration tests. It turns out it's a handy way for anyone to spin up a cluster quickly. Big thank you to @bentheelder for developing it 👏🏼 👏🏼
 - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
   - kubectl is how you interact with k8s using the command line. This allows you to become a k8s whisperer :-)
 
@@ -26,13 +26,13 @@ This script will:
 
 ## Demo
 
-Next, we can install the demo app that makes use of the LLM.
+Next, we can install the demo app that uses the LLM.
 
 ```sh
 ./demo.sh
 ```
 
-If you want to remove or tear down just hte demo app, you can run 
+If you want to remove or tear down just the demo app, you can run 
 
 ```sh
 ./teardown.sh
@@ -40,7 +40,7 @@ If you want to remove or tear down just hte demo app, you can run
 
 ## Shutdown
 
-To shutdown the demo, simply run the following command, which will:
+To shut down the demo, run the following command, which will:
 
 - Remove the Kubernetes manifests
 - Remove the port-forwarding
