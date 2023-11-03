@@ -12,7 +12,7 @@ while [[ $(kubectl get pods --no-headers | grep 'ollama' | awk '{print $3}') != 
   sleep 5
 done
 
-# Wait for the pod starting with "ollama" to be running
+# Wait for the pod starting with "db" to be running
 while [[ $(kubectl get pods --no-headers | grep 'database' | awk '{print $3}') != "Running" ]]; do
   echo "Waiting for the database pod to be running..."
   sleep 5
