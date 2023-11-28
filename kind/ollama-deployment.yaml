@@ -14,10 +14,6 @@ spec:
     spec:
       containers:
         - name: ollama
-          image: onlydole/ollama-mistral:latest
+          image: ghcr.io/cncf/mistral:latest
           ports:
             - containerPort: 11434
-      initContainers:
-        - name: ollama-init
-          image: onlydole/ollama-mistral:latest
-          command: ["sh", "-c", "ollama serve & ollama pull mistral"]
