@@ -58,6 +58,16 @@ This demo has been tested on the following operating systems and will work if yo
 - Linux
 - Windows
 
+## Verification
+
+These images are signed with sigstore's [cosign](https://docs.sigstore.dev/cosign/overview/). You can verify the signature by downloading the `cosign.pub` key from this repo and running the following command:
+
+```bash
+cosign verify --key cosign.pub ghcr.io/cncf/llm-starter-pack:latest
+```
+
+If you're forking this repo you should [read the docs](https://docs.github.com/en/actions/security-guides/encrypted-secrets) on keeping secrets in github. You need to [generate a new key-pair](https://docs.sigstore.dev/cosign/overview/) with `cosign`. The public key can be in your public repo (your users need it to check the signatures), and you can paste the private key in Settings -> Secrets -> Actions.
+
 ## Acknowledgements
 
 We'd like to thank Docker for sharing their GenAI Stack demo with us. We've used their demo as a starting point for this demo. You can find their demo [here](https://www.docker.com/blog/introducing-a-new-genai-stack/).
